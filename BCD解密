@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int Exchange(int d) {
+	int h=0,b[8],i,m,k,c[4],s=0,g=0;
+	k=128;
+	m=7;
+	while(m>=0) {
+		if(d-k>=0) {
+			d=d-k;
+			b[m]=1;
+		} else {
+			b[m]=0;
+		}
+		k=k/2;
+		m--;
+	}
+	for(i=0; i<4; i++) {
+		if(i==0) {
+			c[i]=1;
+		} else {
+			c[i]=c[i-1]*2;
+		}
+	}
+	for(i=0; i<4; i++){
+		g=g+b[i]*c[i];
+		s=s+b[i+4]*c[i];
+	}
+	if(g>9){
+		h=s*100+g;
+	}
+	else{
+		h=s*10+g;
+	}
+	return h;
+}
+
+int main(int argc, char** argv) {
+	int D,H;
+	cin>>D;
+	H=Exchange(D);
+	cout<<H<<endl;
+	return 0;
+}
